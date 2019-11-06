@@ -1,0 +1,8 @@
+﻿@model ShortRecipeViewModel
+
+@{
+    ViewBag.Title = "ShowRecipes";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@Html.Partial("_ShowAllRecipes", Model)

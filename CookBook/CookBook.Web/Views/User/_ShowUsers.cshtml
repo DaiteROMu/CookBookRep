@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShowUsersViewModel>
+
+<p>
+    <a href="#" onclick="AddOrEditUserFunction(0)">
+        Create
+    </a>
+</p>
+<table class="show-list-table">
+    <tr>
+        <th>
+            Login
+        </th>
+        <th>
+            Password
+        </th>
+        <th>
+            E-mail
+        </th>
+        <th>
+            User Roles
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Login)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserRoles)
+            </td>
+            <td>
+                <a href="#" onclick="AddOrEditUserFunction(@item.UserId)">
+                    Edit
+                </a>
+                |
+                <a href="#" onclick="DeleteUserFunction(@item.UserId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

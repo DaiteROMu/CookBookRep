@@ -1,0 +1,149 @@
+﻿@model EditRecipeViewModel
+
+@using (Html.BeginForm("AddOrEditRecipe", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="sum-validation-field">
+        @Html.ValidationSummary(true, "Check all fields", new { @class = "text-danger sum-validation-field" })
+    </div>
+    @if (Model != null)
+    {
+        @Html.HiddenFor(model => model.RecipeId)
+    }
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @if (Model != null && Model.Name != null)
+            {
+                @Html.EditorFor(model => model.Name, Model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (Model != null && Model.ImageUrl != null && Model.ImageUrl != "")
+    {
+        <div class="form-group">
+            <img src="@Url.Action("GetRecipeImage", "Recipe", new { @imageUrl= Model.ImageUrl })" alt="Nothing is here!" />
+        </div>
+
+        <div class="form-group">
+            <div class="label-class">
+                @Html.LabelFor(model => model.IsNullImage, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="form-column">
+                @Html.CheckBoxFor(model => model.IsNullImage)
+            </div>
+            <div class="form-column">                
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.ImageFile, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @Html.TextBoxFor(model => model.ImageFile, new { @class = "form-control", type = "file" })
+        </div>
+        <div class="form-column">            
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.ValidationMessageFor(model => model.ImageFile, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @Html.DropDownListFor(model => model.CategoryId, Model.Categories, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.CookingTime, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @if (Model != null && Model.CookingTime != null)
+            {
+                @Html.EditorFor(model => model.CookingTime, Model.CookingTime, new { htmlAttributes = new { @class = "form-control" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.CookingTime, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.CookingTime, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.CookingTemperature, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @if (Model != null && Model.CookingTemperature != null)
+            {
+                @Html.EditorFor(model => model.CookingTemperature, Model.CookingTemperature, new { htmlAttributes = new { @class = "form-control" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.CookingTemperature, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.CookingTemperature, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+    </div>
+
+    <div class="form-group">
+        @if (Model != null && Model.Description != null)
+        {
+            @Html.EditorFor(model => model.Description, Model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        }
+        else
+        {
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        }
+    </div>
+
+    <div class="form-group">
+        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 form-column bottom-btns">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        @if (Model != null && Model.RecipeId != 0)
+        {
+            <div class="col-md-offset-2 form-column bottom-btns">
+                <input type="button" name="backToShowFullRecipeBtn" value="Back" class="btn btn-default" onclick="ShowFullRecipeFunction(@Model.RecipeId)" />
+            </div>
+        }
+    </div>
+</div>
+}

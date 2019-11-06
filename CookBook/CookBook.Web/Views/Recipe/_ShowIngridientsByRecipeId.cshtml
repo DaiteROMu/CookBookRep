@@ -1,0 +1,49 @@
+﻿@model RecipeIngridientViewModel
+
+<p class="paragraph-center">
+    @Model.RecipeName
+</p>
+
+<p>
+    <a href="#" onclick="ShowFullRecipeFunction(@Model.RecipeId)">
+        Back
+    </a>
+    |
+    <a href="#" onclick="AddOrEditRecipeIngridientFunction(@Model.RecipeId, 0)">
+        Create
+    </a>
+</p>
+
+<table class="show-recipeingr-table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Weight
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.RecipeIngridients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                <a href="#" onclick="AddOrEditRecipeIngridientFunction(@Model.RecipeId, @item.IngridientId)">
+                    Edit
+                </a>
+                |
+                <a href="#" onclick="DeleteRecipeIngridientFunction(@Model.RecipeId, @item.IngridientId)">
+                    Delete
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,55 @@
+﻿@model EditRecipeIngridientViewModel
+
+@using (Html.BeginForm("AddOrEditRecipeIngridient", "Recipe", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <div class="sum-validation-field">
+        @Html.ValidationSummary(true, "Check all fields", new { @class = "text-danger sum-validation-field" })
+    </div>
+    @if (Model != null)
+    {
+        @Html.HiddenFor(model => model.RecipeId)
+    }
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.IngridientId, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @Html.DropDownListFor(model => model.IngridientId, Model.Ingridients, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.IngridientId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="label-class">
+            @Html.LabelFor(model => model.Weight, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="form-column">
+            @if (Model != null && Model.Weight != null)
+            {
+                @Html.EditorFor(model => model.Weight, Model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        </div>
+        <div class="form-column">
+            @Html.ValidationMessageFor(model => model.Weight, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 form-column bottom-btns">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+        <div class="col-md-offset-2 form-column bottom-btns">
+            <input type="button" name="backToRecIngrListBtn" value="Back" class="btn btn-default" onclick="ShowIngridientsByRecipeIdFunction(@Model.RecipeId)" />
+        </div>
+    </div>
+</div>
+}

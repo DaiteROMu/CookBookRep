@@ -1,0 +1,8 @@
+﻿@model IEnumerable<IngridientViewModel>
+
+@{
+    ViewBag.Title = "ShowIngridients";
+    Layout = "~/Views/Shared/_EditorLayout.cshtml";
+}
+
+@Html.Partial("_ShowIngridients", Model)

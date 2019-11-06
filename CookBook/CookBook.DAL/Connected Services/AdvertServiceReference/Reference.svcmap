@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="dd37abb5-a1ba-422a-8d4d-26eae3fd5a60" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:4002/AdvertService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AdvertService.disco" MetadataType="Disco" ID="f6d61de2-f32e-41fd-b758-9e3e071a8849" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?disco" />
+    <MetadataFile FileName="AdvertService.xsd" MetadataType="Schema" ID="1de9cd03-f5b6-436b-8115-a080897a7372" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AdvertService1.xsd" MetadataType="Schema" ID="702285de-1dab-4b74-82d2-b733fd450db1" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?xsd=xsd3" />
+    <MetadataFile FileName="AdvertService2.xsd" MetadataType="Schema" ID="f6482459-abcd-41e8-843d-30e5a9eac6f3" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AdvertService.wsdl" MetadataType="Wsdl" ID="46e36866-c12a-4232-8aef-22d72b7ba180" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?wsdl" />
+    <MetadataFile FileName="AdvertService3.xsd" MetadataType="Schema" ID="3380c34f-81f5-4a5e-a637-272d2cec8224" SourceId="1" SourceUrl="http://localhost:4002/AdvertService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

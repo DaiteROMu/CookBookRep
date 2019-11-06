@@ -1,0 +1,74 @@
+﻿@model EditSequencingViewModel
+
+<p class="paragraph-center">
+    @Model.RecipeName
+</p>
+
+<table class="show-recipeingr-table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Weight
+        </th>
+    </tr>
+
+    @foreach (var item in Model.RecipeIngridients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br />
+
+@using (Html.BeginForm("AddOrEditSequencing", "Recipe", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-horizontal">
+        <div class="sum-validation-field">
+            @Html.ValidationSummary(true, "Check all fields", new { @class = "text-danger sum-validation-field" })
+        </div>
+        @if (Model != null)
+        {
+            @Html.HiddenFor(model => model.RecipeId)
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.Sequencing, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+
+        <div class="form-group">
+            @if (Model != null && Model.Sequencing != null)
+            {
+                @Html.EditorFor(model => model.Sequencing, Model.Sequencing, new { htmlAttributes = new { @class = "form-control" } })
+            }
+            else
+            {
+                @Html.EditorFor(model => model.Sequencing, new { htmlAttributes = new { @class = "form-control" } })
+            }
+        </div>
+
+        <div class="form-group">
+            @Html.ValidationMessageFor(model => model.Sequencing, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 form-column bottom-btns">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            @if (Model != null && Model.RecipeId != 0)
+            {
+                <div class="col-md-offset-2 form-column bottom-btns">
+                    <input type="button" name="backToShowFullRecipeBtn" value="Back" class="btn btn-default" onclick="ShowFullRecipeFunction(@Model.RecipeId)" />
+                </div>
+            }
+        </div>
+    </div>
+}

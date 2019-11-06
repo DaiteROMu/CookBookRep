@@ -1,0 +1,3 @@
+CREATE PROC GetUserRoles
+AS
+SELECT * FROM UserRole

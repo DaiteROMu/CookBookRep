@@ -1,0 +1,35 @@
+﻿@model ShortRecipeViewModel
+
+
+@Html.Action("ShowChildCategories", "Category", new { @categoryId = Model.Category.CategoryId })
+
+<div>
+    @if (Model.Recipes.ToArray().Length > 0)
+    {
+        foreach (var item in Model.Recipes)
+        {
+            <div class="recipe-item">
+                <div class="recipe-item-text recipe-item-header">
+                    <a href="#" onclick="ShowFullRecipeFunction(@item.RecipeId)">
+                        @item.Name
+                    </a>
+                </div>
+                <div class="recipe-item-text">
+                    <a href="#" onclick="ShowRecipesByCategoryIdFunction(@item.CategoryId)">
+                        @item.CategoryName
+                    </a>
+                </div>
+                <img src="@Url.Action("GetRecipeImage", "Recipe", new { @imageUrl=item.ImageUrl })" alt="Nothing is here!" />
+                <div class="recipe-item-text recipe-item-footer">
+                    @Html.ActionLink("Download", "DownloadRecipe", "Recipe", new { @recipeId = item.RecipeId })
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="paragraph-center">
+            No recipes
+        </p>
+    }
+</div>

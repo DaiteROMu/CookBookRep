@@ -1,0 +1,36 @@
+﻿@model ShowChildCategoriesViewModel
+
+@if (Model.CurrentCategory != null)
+{
+    <p id="back-to-parent-category">
+        <span>
+            @Model.CurrentCategory.Name
+        </span>
+
+        @if (Model.CurrentCategory.ParentId != 0)
+        {
+            <br />
+            <a href="#" onclick="ShowRecipesByCategoryIdFunction(@Model.CurrentCategory.ParentId)">
+                Back
+            </a>
+        }
+    </p>
+}
+
+@if (Model.ChildCategories.ToArray().Length > 0)
+{
+    foreach (var item in Model.ChildCategories)
+    {
+        <div class="child-categories-container-item">
+            <a href="#" onclick="ShowRecipesByCategoryIdFunction(@item.CategoryId)">
+                @item.Name
+            </a>
+        </div>
+    }
+}
+else
+{
+    <p>
+        No child categories
+    </p>
+}

@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ShortCategoryViewModel>
+
+@{
+    ViewBag.Title = "ShowCategories";
+    Layout = "~/Views/Shared/_EditorLayout.cshtml";
+}
+
+@Html.Partial("_ShowCategories", Model)

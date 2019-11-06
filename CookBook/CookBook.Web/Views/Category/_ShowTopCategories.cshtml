@@ -1,0 +1,28 @@
+﻿@model IEnumerable<ShortCategoryViewModel>
+
+@if (HttpContext.Current.User.IsInRole("Editor"))
+{
+    <div class="left-side-bar-item left-side-bar-item-first left-side-bar-item-hovered">
+        <a href="#" onclick="AddOrEditRecipeFunction(0)">
+            Add Recipe
+        </a>
+    </div>
+}
+
+<div class="left-side-bar-item">
+</div>
+
+<div class="left-side-bar-item left-side-bar-item-hovered">
+    <a href="#" onclick="ShowAllRecipesFunction()">
+        Show All
+    </a>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="left-side-bar-item left-side-bar-item-hovered">
+        <a href="#" onclick="ShowRecipesByCategoryIdFunction(@item.CategoryId)">
+            @item.Name
+        </a>
+    </div>
+}

@@ -1,0 +1,118 @@
+﻿@model FullRecipeViewModel
+
+<div id="full-recipe-container">
+    @if (HttpContext.Current.User.IsInRole("Editor"))
+    {
+        <div class="full-recipe-item">
+            <a href="#" onclick="AddOrEditRecipeFunction(@Model.Recipe.RecipeId)">
+                Edit Recipe
+            </a>
+            |
+            <a href="#" onclick="ShowIngridientsByRecipeIdFunction(@Model.Recipe.RecipeId)">
+                Edit Ingridients
+            </a>
+            |
+            <a href="#" onclick="ShowSequencingByRecipeIdFunction(@Model.Recipe.RecipeId)">
+                Edit Sequencing
+            </a>
+            |
+            <a href="#" onclick="DeleteRecipeFunction(@Model.Recipe.RecipeId)">
+                Delete
+            </a>
+        </div>
+    }
+
+    <div class="full-recipe-item full-recipe-item-name">
+        <h1>
+            @Model.Recipe.Name
+        </h1>
+    </div>
+
+    <div class="full-recipe-item">
+        @Model.Recipe.CategoryName
+    </div>
+
+    @if (Model.RecipeDetails.Description != null && Model.RecipeDetails.Description != "")
+    {
+        <div class="full-recipe-item">
+            <h3>
+                Description
+            </h3>
+        </div>
+
+        <div class="full-recipe-item">
+            @Model.RecipeDetails.Description
+        </div>
+    }
+
+    <div class="full-recipe-item">
+        <img src="@Url.Action("GetRecipeImage", "Recipe", new { @imageUrl= Model.Recipe.ImageUrl })" alt="Nothing is here!" />
+    </div>
+
+    <div class="full-recipe-item">
+        <table>
+            <tr>
+                <th>
+                    Cooking Time
+                </th>
+                <th>
+                    Cooking Temperature
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @Model.RecipeDetails.CookingTime
+                </td>
+                <td>
+                    @Model.RecipeDetails.CookingTemperature
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="full-recipe-item">
+        <h3>
+            Ingridients
+        </h3>
+    </div>
+
+    <div class="full-recipe-item">
+        <table>
+            <tr>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Weight
+                </th>
+            </tr>
+            @foreach (var item in Model.Ingridients)
+            {
+                <tr>
+                    <td>
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Weight
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <div class="full-recipe-item">
+        <h3>
+            Sequencing
+        </h3>
+    </div>
+
+    <div class="full-recipe-item">
+        @Model.RecipeDetails.Sequencing
+    </div>
+
+    <div class="full-recipe-item">
+        <a href="#" onclick="ShowRecipesByCategoryIdFunction(@Model.Recipe.CategoryId)">
+            Back
+        </a>
+    </div>
+</div>

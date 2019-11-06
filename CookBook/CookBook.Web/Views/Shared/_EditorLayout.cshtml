@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>CookBook</title>
+        <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+        <header class="page-header">
+            <div class="page-header-item page-header-item-first">
+                @Html.ActionLink("Cook Book", "ShowAllRecipes", "Recipe", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+            @if (HttpContext.Current.User.IsInRole("Editor"))
+            {
+                <div class="page-header-item">
+                    @Html.ActionLink("Ingridients", "ShowIngridients", "Ingridient", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+
+                <div class="page-header-item">
+                    @Html.ActionLink("Categories", "ShowCategories", "Category", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+            }
+
+            @if (HttpContext.Current.User.IsInRole("Admin"))
+            {
+                <div class="page-header-item">
+                    @Html.ActionLink("Users", "ShowUsers", "User", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+            }
+
+            <div class="page-header-item page-header-item-last">
+                @Html.ActionLink("Log Out", "Logout", "Login", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+
+        </header>
+
+        <div id="body-container">
+
+            <div id="editor-container">
+                @RenderBody()
+            </div>
+
+            <footer class="footer">
+                <p>&copy; @DateTime.Now.Year - Korotkevich Roman</p>
+            </footer>
+        </div>
+
+
+    </body>
+</html>
+
+<script src="~/Scripts/modernizr-2.6.2.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/IngridientNavigationScript.js"></script>
+<script src="~/Scripts/CategoryNavigationScript.js"></script>
+<script src="~/Scripts/RecipeNavigationScript.js"></script>
+<script src="~/Scripts/UserNavigationScript.js"></script>

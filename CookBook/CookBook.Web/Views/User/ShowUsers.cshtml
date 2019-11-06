@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ShowUsersViewModel>
+
+@{
+    ViewBag.Title = "ShowUsers";
+    Layout = "~/Views/Shared/_EditorLayout.cshtml";
+}
+
+@Html.Partial("_ShowUsers", Model)

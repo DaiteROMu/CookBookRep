@@ -1,0 +1,15 @@
+﻿@model IEnumerable<int>
+
+@if (Model != null)
+{
+    foreach (int item in Model)
+    {
+        <img src="@Url.Action("GetAdvertBanner", "Advert", new { @advertId=item })" alt="There is advertisement banner." />
+    }
+}
+else
+{
+    <h2>
+        Ooops. Something goes wrong with advertisements.
+    </h2>
+}

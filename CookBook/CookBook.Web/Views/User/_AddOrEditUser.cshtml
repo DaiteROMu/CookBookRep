@@ -1,0 +1,94 @@
+﻿@model EditUserViewModel
+
+@using (Html.BeginForm("AddOrEditUser", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <div class="sum-validation-field">
+            @Html.ValidationSummary(true, "Check all fields", new { @class = "text-danger sum-validation-field" })
+        </div>
+        @if (Model != null)
+        {
+            @Html.HiddenFor(model => model.UserId)
+        }
+
+        <div class="form-group">
+            <div class="label-class">
+                @Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="form-column">
+                @if (Model != null && Model.Login != null)
+                {
+                    @Html.EditorFor(model => model.Login, Model.Login, new { htmlAttributes = new { @class = "form-control" } })
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+                }
+            </div>
+            <div class="form-column">
+                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="label-class">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="form-column">
+                @if (Model != null && Model.Password != null)
+                {
+                    @Html.EditorFor(model => model.Password, Model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                }
+            </div>
+            <div class="form-column">
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="label-class">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="form-column">
+                @if (Model != null && Model.Email != null)
+                {
+                    @Html.EditorFor(model => model.Email, Model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                }
+                else
+                {
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                }
+            </div>
+            <div class="form-column">
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="label-class">
+                @Html.LabelFor(model => model.SelectedUserRoles, htmlAttributes: new { @class = "control-label col-md-2" })
+            </div>
+            <div class="form-column">
+                @Html.ListBoxFor(model => model.SelectedUserRoles, Model.UserRoles, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-column">
+                @Html.ValidationMessageFor(model => model.SelectedUserRoles, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 form-column bottom-btns">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+            <div class="col-md-offset-2 form-column bottom-btns">
+                <input type="button" name="backToUserListBtn" value="Back" class="btn btn-default" onclick="ShowUsersFunction()" />
+            </div>
+        </div>
+    </div>
+}
